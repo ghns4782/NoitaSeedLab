@@ -65,3 +65,4 @@ See [THIRD_PARTY.md](THIRD_PARTY.md) for third-party sources and licenses.
 
 
 ***This project is not affiliated with 《Noita》 Games.***
+***This English MD form by ChatGPT***
