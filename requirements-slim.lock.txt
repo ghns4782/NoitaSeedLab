@@ -1,0 +1,29 @@
+# Windows x64 / CPython 3.13. NumPy must subsequently be replaced by the local
+# no-BLAS wheel: see scripts/build-slim.ps1. This file pins the build environment.
+altgraph==0.17.5
+build==1.6.1
+cffi==2.1.1
+colorama==0.4.6
+Cython==3.3.0
+meson==1.12.1
+meson-python==0.22.1
+ninja==1.13.2
+numpy==2.5.4
+packaging==26.3
+pefile==2024.8.26
+platformdirs==4.13.5
+pycparser==3.11
+pyinstaller==6.22.3
+pyinstaller-hooks-contrib==2026.8
+pyopencl==2026.1.4
+pyproject-metadata==0.12.1
+pyproject_hooks==1.3.3
+PySide6-Essentials==6.11.1
+pytools==2026.1.1
+pyvips==3.2.0
+pyvips-binary==8.18.7
+pywin32-ctypes==0.2.3
+setuptools==84.2.0
+shiboken6==6.11.1
+siphash24==1.9
+typing_extensions==4.16.0

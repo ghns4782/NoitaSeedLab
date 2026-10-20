@@ -1,0 +1,14 @@
+VSVersionInfo(
+  ffi=FixedFileInfo(filevers=(1,0,0,0),prodvers=(1,0,0,0),OS=0x40004,fileType=1),
+  kids=[
+    StringFileInfo([StringTable('040904b0',[
+      StringStruct('FileDescription','NoitaSeedLab · 本地种子工坊'),
+      StringStruct('ProductName','NoitaSeedLab'),
+      StringStruct('FileVersion','1.0.0'),
+      StringStruct('ProductVersion','1.0.0'),
+      StringStruct('InternalName','NoitaSeedLab'),
+      StringStruct('OriginalFilename','NoitaSeedLab.exe')
+    ])]),
+    VarFileInfo([VarStruct('Translation',[1033,1200])])
+  ]
+)

@@ -1,0 +1,13 @@
+[
+  {"spell":"CRUMBLING_EARTH","x":9983,"y":-1222,"title":"金字塔顶"},
+  {"spell":"SEA_LAVA","x":780,"y":-1088,"title":"山顶浮岛"},
+  {"spell":"TENTACLE","x":-9985,"y":2883,"title":"积雪荒原魔球室"},
+  {"spell":"NUKE","x":3472,"y":1879,"title":"熔岩湖下方","mainOnly":true},
+  {"spell":"NECROMANCY","x":9982,"y":2883,"title":"金字塔下方"},
+  {"spell":"BOMB_HOLY","x":-4353,"y":3912,"title":"积雪深渊西侧神殿"},
+  {"spell":"SPIRAL_SHOT","x":-3841,"y":10052,"title":"蜘蛛洞深部"},
+  {"spell":"CLOUD_THUNDER","x":4350,"y":836,"title":"熔岩湖东侧"},
+  {"spell":"FIREWORK","x":-256,"y":16208,"title":"地狱入口"},
+  {"spell":"EXPLODING_DEER","x":-8960,"y":14666,"title":"西部深层"},
+  {"spell":"MATERIAL_CEMENT","x":10495,"y":16195,"title":"东部深层"}
+]

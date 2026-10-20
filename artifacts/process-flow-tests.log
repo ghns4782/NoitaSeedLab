@@ -1,0 +1,13 @@
+test_chest_generated_contents_and_wand_empty_slots (test_flow_details.FlowDetailsTests.test_chest_generated_contents_and_wand_empty_slots) ... ok
+test_drag_between_groups_and_range_visibility (test_flow_details.FlowDetailsTests.test_drag_between_groups_and_range_visibility) ... ok
+test_flow_details_do_not_resize_main_page_and_progress_is_overall (test_flow_details.FlowDetailsTests.test_flow_details_do_not_resize_main_page_and_progress_is_overall) ... ok
+test_flow_preserves_nested_boolean_logic_and_disk_results (test_flow_details.FlowDetailsTests.test_flow_preserves_nested_boolean_logic_and_disk_results) ... ok
+test_flow_stop_keeps_intermediates_out_of_final_results (test_flow_details.FlowDetailsTests.test_flow_stop_keeps_intermediates_out_of_final_results) ... ok
+test_gpu_flow_with_real_layer_stage (test_flow_details.FlowDetailsTests.test_gpu_flow_with_real_layer_stage) ... E:\bag\Pyproject\Noitatool\.build-env\Lib\site-packages\pyopencl\__init__.py:581: CompilerWarning: Non-empty compiler output encountered. Set the environment variable PYOPENCL_COMPILER_OUTPUT=1 to see more.
+  lambda: self._prg.build(options_bytes, devices),
+ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 12.148s
+
+OK

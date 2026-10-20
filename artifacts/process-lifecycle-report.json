@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-21",
+  "rootCauses": [
+    "Cancellation did not interrupt active Node batches",
+    "No kernel-enforced computing-child lifetime",
+    "Window ignored close during jobs without retry"
+  ],
+  "fixes": [
+    "Atomic Windows Job List for computing children only",
+    "Interrupt and reap owned engines on stop/close",
+    "Suppress stale callbacks and automatically finish closing",
+    "Stable window AppUserModelID; Task Manager presentation remains OS-controlled"
+  ],
+  "validation": {
+    "tests": 33,
+    "busyOwnerForcedExit": {
+      "forcedOwnerExit": true,
+      "busyNodeReaped": true
+    },
+    "externalApplicationPreserved": true,
+    "frozenSelfTest": true,
+    "zipIntegrity": "passed"
+  },
+  "archive": {
+    "archive": "E:\\bag\\Pyproject\\Noitatool\\dist\\Noitatool-20261021-process-fix.zip",
+    "archiveBytes": 126507278,
+    "uncompressedBytes": 299158971,
+    "files": 2341,
+    "sha256": "6dbedee15aa658c1c82d2238633d893926155cdbd41f5419707e7c368d6f289d",
+    "zipIntegrity": "passed",
+    "userDataIncluded": false
+  }
+}

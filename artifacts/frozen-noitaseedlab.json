@@ -1,0 +1,56 @@
+{
+  "dataDirectory": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-noitaseedlab\\NoitaSeedLab\\data",
+  "startupNotices": 2,
+  "mapProgress": [
+    0,
+    5,
+    19,
+    33,
+    47,
+    61,
+    75,
+    92,
+    97,
+    100
+  ],
+  "holyMountains": 7,
+  "mapObjects": 1078,
+  "areaItems": 21,
+  "search": [
+    123
+  ],
+  "namedRegions": 41,
+  "normalEditor": [
+    {
+      "kind": "layer",
+      "layer": 0,
+      "scope": "main",
+      "label": "矿坑 + 下方圣山"
+    }
+  ],
+  "embeddedBrowser": false,
+  "realTerrainVisibleTiles": 1,
+  "fixedOrbs": 11,
+  "tablets": 13,
+  "mapViewportHeight": 743,
+  "streamedImport": true,
+  "captureEditor": true,
+  "holyShopReadableInPreciseMode": true,
+  "mergedHolyMountains": 7,
+  "translationEntries": 6121,
+  "bundledReference": true,
+  "offlineReference": true,
+  "externalWiki": "https://noita.wiki.gg/index.php?search=Spark+bolt",
+  "gpuDevices": [
+    "<pyopencl.Device 'NVIDIA GeForce RTX 2060' on 'NVIDIA CUDA' at 0x10f27cbf140>"
+  ],
+  "gpuVerifiedSeeds": 4096,
+  "gpuSparseVerified": true,
+  "processOwnership": {
+    "forcedOwnerExit": true,
+    "busyNodeReaped": true,
+    "directChild": true,
+    "workerImage": "NoitaSeedLab.Worker.exe"
+  },
+  "ok": true
+}

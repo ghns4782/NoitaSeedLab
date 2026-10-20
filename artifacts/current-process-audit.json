@@ -1,0 +1,202 @@
+{
+  "checkedAt": "2026-10-21T01:12:30.0266044+08:00",
+  "nodeTotal": 22,
+  "noitatoolMain": [
+    {
+      "ProcessId": 22964,
+      "ExecutablePath": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\Noitatool.exe"
+    }
+  ],
+  "groups": [
+    {
+      "Name": "Codex tools, node_repl.exe",
+      "Count": 6
+    },
+    {
+      "Name": "Codex tools, node.exe",
+      "Count": 7
+    },
+    {
+      "Name": "Noitatool, node.EXE",
+      "Count": 9
+    }
+  ],
+  "processes": [
+    {
+      "category": "Codex tools",
+      "pid": 28532,
+      "parentPid": 26288,
+      "name": "node.exe",
+      "path": "C:\\Users\\wenji\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "command": "C:\\Users\\wenji\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe C:\\Users\\wenji\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\node_modules\\@oai\\artifact-tool\\dist\\artifact-session\\host-daemon.mjs"
+    },
+    {
+      "category": "Codex tools",
+      "pid": 7816,
+      "parentPid": 17252,
+      "name": "node_repl.exe",
+      "path": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_repl.exe",
+      "command": "\"C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_repl.exe\""
+    },
+    {
+      "category": "Codex tools",
+      "pid": 18556,
+      "parentPid": 17252,
+      "name": "node.exe",
+      "path": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe",
+      "command": "\"C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe\" C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_modules\\@oai\\cua-repl\\bin\\cua-repl.mjs"
+    },
+    {
+      "category": "Codex tools",
+      "pid": 22084,
+      "parentPid": 17252,
+      "name": "node_repl.exe",
+      "path": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_repl.exe",
+      "command": "\"C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_repl.exe\""
+    },
+    {
+      "category": "Codex tools",
+      "pid": 5508,
+      "parentPid": 20668,
+      "name": "node.exe",
+      "path": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe",
+      "command": "\"C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe\"  ./server.mjs"
+    },
+    {
+      "category": "Codex tools",
+      "pid": 20648,
+      "parentPid": 26908,
+      "name": "node.exe",
+      "path": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe",
+      "command": "\"C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe\"  ./server.mjs "
+    },
+    {
+      "category": "Codex tools",
+      "pid": 9164,
+      "parentPid": 18556,
+      "name": "node_repl.exe",
+      "path": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_repl.exe",
+      "command": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_repl.exe"
+    },
+    {
+      "category": "Codex tools",
+      "pid": 13232,
+      "parentPid": 17252,
+      "name": "node_repl.exe",
+      "path": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_repl.exe",
+      "command": "\"C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_repl.exe\""
+    },
+    {
+      "category": "Codex tools",
+      "pid": 16120,
+      "parentPid": 17252,
+      "name": "node_repl.exe",
+      "path": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_repl.exe",
+      "command": "\"C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_repl.exe\""
+    },
+    {
+      "category": "Codex tools",
+      "pid": 11080,
+      "parentPid": 17252,
+      "name": "node.exe",
+      "path": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe",
+      "command": "\"C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe\" C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_modules\\@oai\\cua-repl\\bin\\cua-repl.mjs"
+    },
+    {
+      "category": "Codex tools",
+      "pid": 11164,
+      "parentPid": 7956,
+      "name": "node.exe",
+      "path": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe",
+      "command": "\"C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe\"  ./server.mjs"
+    },
+    {
+      "category": "Codex tools",
+      "pid": 20784,
+      "parentPid": 14232,
+      "name": "node.exe",
+      "path": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe",
+      "command": "\"C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe\"  ./server.mjs "
+    },
+    {
+      "category": "Codex tools",
+      "pid": 18136,
+      "parentPid": 11080,
+      "name": "node_repl.exe",
+      "path": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_repl.exe",
+      "command": "C:\\Users\\wenji\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_repl.exe"
+    },
+    {
+      "category": "Noitatool",
+      "pid": 7888,
+      "parentPid": 22964,
+      "name": "node.EXE",
+      "path": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe",
+      "command": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\runtime\\engine.mjs"
+    },
+    {
+      "category": "Noitatool",
+      "pid": 20736,
+      "parentPid": 22964,
+      "name": "node.EXE",
+      "path": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe",
+      "command": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\runtime\\engine.mjs"
+    },
+    {
+      "category": "Noitatool",
+      "pid": 18276,
+      "parentPid": 22964,
+      "name": "node.EXE",
+      "path": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe",
+      "command": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\runtime\\engine.mjs"
+    },
+    {
+      "category": "Noitatool",
+      "pid": 19656,
+      "parentPid": 22964,
+      "name": "node.EXE",
+      "path": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe",
+      "command": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\runtime\\engine.mjs"
+    },
+    {
+      "category": "Noitatool",
+      "pid": 6888,
+      "parentPid": 22964,
+      "name": "node.EXE",
+      "path": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe",
+      "command": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\runtime\\engine.mjs"
+    },
+    {
+      "category": "Noitatool",
+      "pid": 4816,
+      "parentPid": 22964,
+      "name": "node.EXE",
+      "path": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe",
+      "command": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\runtime\\engine.mjs"
+    },
+    {
+      "category": "Noitatool",
+      "pid": 22916,
+      "parentPid": 22964,
+      "name": "node.EXE",
+      "path": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe",
+      "command": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\runtime\\engine.mjs"
+    },
+    {
+      "category": "Noitatool",
+      "pid": 27144,
+      "parentPid": 22964,
+      "name": "node.EXE",
+      "path": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe",
+      "command": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\runtime\\engine.mjs"
+    },
+    {
+      "category": "Noitatool",
+      "pid": 17600,
+      "parentPid": 22964,
+      "name": "node.EXE",
+      "path": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe",
+      "command": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\runtime\\engine.mjs"
+    }
+  ]
+}

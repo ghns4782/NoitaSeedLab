@@ -1,0 +1,9 @@
+test_close_interrupts_blocked_engine_request_and_is_idempotent (test_process_lifecycle.ProcessLifecycleTests.test_close_interrupts_blocked_engine_request_and_is_idempotent) ... ok
+test_forced_owner_termination_kills_node_without_atexit (test_process_lifecycle.ProcessLifecycleTests.test_forced_owner_termination_kills_node_without_atexit) ... ok
+test_search_stop_reaps_all_workers (test_process_lifecycle.ProcessLifecycleTests.test_search_stop_reaps_all_workers) ... ok
+test_window_closes_automatically_during_query_without_error_popup (test_process_lifecycle.ProcessLifecycleTests.test_window_closes_automatically_during_query_without_error_popup) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 2.431s
+
+OK

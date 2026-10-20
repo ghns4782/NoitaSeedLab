@@ -1,0 +1,133 @@
+235 WARNING: Assuming this is not an Anaconda environment or an additional venv/pipenv/... environment manager is being used on top, because the conda-meta folder E:\bag\Pyproject\Noitatool\.build-env\conda-meta does not exist.
+266 INFO: PyInstaller: 6.22.3, contrib hooks: 2026.8
+266 INFO: Python: 3.13.13 (conda)
+296 INFO: Platform: Windows-11-10.0.26200-SP0
+296 INFO: Python environment: E:\bag\Pyproject\Noitatool\.build-env
+181 WARNING: Assuming this is not an Anaconda environment or an additional venv/pipenv/... environment manager is being used on top, because the conda-meta folder E:\bag\Pyproject\Noitatool\.build-env\conda-meta does not exist.
+174 WARNING: Assuming this is not an Anaconda environment or an additional venv/pipenv/... environment manager is being used on top, because the conda-meta folder E:\bag\Pyproject\Noitatool\.build-env\conda-meta does not exist.
+3292 INFO: Module search paths (PYTHONPATH):
+['E:\\bag\\Pyproject\\Noitatool\\scripts',
+ 'E:\\bag\\Pyproject\\Noitatool',
+ 'D:\\Miniconda3\\python313.zip',
+ 'D:\\Miniconda3\\DLLs',
+ 'D:\\Miniconda3\\Lib',
+ 'D:\\Miniconda3',
+ 'E:\\bag\\Pyproject\\Noitatool\\.build-env',
+ 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages',
+ 'E:\\bag\\Pyproject\\Noitatool',
+ 'E:\\bag\\Pyproject\\Noitatool\\.map-deps']
+192 WARNING: Assuming this is not an Anaconda environment or an additional venv/pipenv/... environment manager is being used on top, because the conda-meta folder E:\bag\Pyproject\Noitatool\.build-env\conda-meta does not exist.
+4080 INFO: Appending 'binaries' from .spec
+4081 INFO: Appending 'datas' from .spec
+4371 INFO: checking Analysis
+4426 INFO: Building because excludes changed
+4426 INFO: Looking for Python shared library...
+4426 INFO: Using Python shared library: D:\Miniconda3\python313.dll
+4426 INFO: Running Analysis Analysis-00.toc
+4426 INFO: Target bytecode optimization level: 0
+4426 INFO: Initializing module dependency graph...
+4428 INFO: Initializing module graph hook caches...
+4450 INFO: Analyzing modules for base_library.zip ...
+170 WARNING: Assuming this is not an Anaconda environment or an additional venv/pipenv/... environment manager is being used on top, because the conda-meta folder E:\bag\Pyproject\Noitatool\.build-env\conda-meta does not exist.
+201 WARNING: Assuming this is not an Anaconda environment or an additional venv/pipenv/... environment manager is being used on top, because the conda-meta folder E:\bag\Pyproject\Noitatool\.build-env\conda-meta does not exist.
+216 WARNING: Assuming this is not an Anaconda environment or an additional venv/pipenv/... environment manager is being used on top, because the conda-meta folder E:\bag\Pyproject\Noitatool\.build-env\conda-meta does not exist.
+6748 INFO: Processing standard module hook 'hook-encodings.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+177 WARNING: Assuming this is not an Anaconda environment or an additional venv/pipenv/... environment manager is being used on top, because the conda-meta folder E:\bag\Pyproject\Noitatool\.build-env\conda-meta does not exist.
+7879 INFO: Processing standard module hook 'hook-math.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+9922 INFO: Processing standard module hook 'hook-pickle.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+11307 INFO: Processing standard module hook 'hook-heapq.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+12217 INFO: Caching module dependency graph...
+12268 INFO: Analyzing E:\bag\Pyproject\Noitatool\main.py
+12336 INFO: Processing standard module hook 'hook-sysconfig.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+12344 INFO: Processing standard module hook 'hook-_ctypes.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+12411 INFO: Processing standard module hook 'hook-PySide6.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+12760 INFO: Processing standard module hook 'hook-shiboken6.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+13072 INFO: Processing standard module hook 'hook-PySide6.QtNetwork.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+17099 INFO: Processing standard module hook 'hook-PySide6.QtCore.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+22566 INFO: Processing standard module hook 'hook-PySide6.QtWidgets.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+27936 INFO: Processing standard module hook 'hook-PySide6.QtGui.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+61671 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+61954 INFO: Processing standard module hook 'hook-xml.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+62640 INFO: Processing standard module hook 'hook-pyopencl.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+62700 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+62701 INFO: SetuptoolsInfo: initializing cached setuptools info...
+586 WARNING: Assuming this is not an Anaconda environment or an additional venv/pipenv/... environment manager is being used on top, because the conda-meta folder E:\bag\Pyproject\Noitatool\.build-env\conda-meta does not exist.
+64765 INFO: Processing standard module hook 'hook-numpy.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+65744 INFO: Processing standard module hook 'hook-platform.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+66051 INFO: Processing standard module hook 'hook-webbrowser.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+67533 INFO: Processing standard module hook 'hook-difflib.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+69110 INFO: Processing standard module hook 'hook-sqlite3.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+167 WARNING: Assuming this is not an Anaconda environment or an additional venv/pipenv/... environment manager is being used on top, because the conda-meta folder E:\bag\Pyproject\Noitatool\.build-env\conda-meta does not exist.
+69721 INFO: Processing pre-safe-import-module hook 'hook-platformdirs.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+69743 INFO: Processing standard module hook 'hook-platformdirs.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+70837 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+71026 INFO: Processing standard module hook 'hook-pycparser.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+71253 INFO: Processing standard module hook 'hook-setuptools.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+71272 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+71317 INFO: Processing pre-safe-import-module hook 'hook-jaraco.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+71318 INFO: Setuptools: 'jaraco' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco'!
+71336 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+71336 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+71528 INFO: Processing standard module hook 'hook-_osx_support.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+71549 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+71932 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+71934 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+71949 INFO: Processing pre-safe-import-module hook 'hook-backports.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+71950 INFO: Setuptools: 'backports' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.backports'!
+72715 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+72715 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+73542 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+73543 INFO: Setuptools: 'wheel' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.wheel'!
+74534 INFO: Analyzing hidden import 'noitatool.cli'
+74542 INFO: Analyzing hidden import 'noitatool.map_tiles'
+74546 INFO: Analyzing hidden import 'pyvips.pyvips_build'
+74553 INFO: Processing module hooks (post-graph stage)...
+74562 WARNING: Hidden import "pycparser.lextab" not found!
+74562 WARNING: Hidden import "pycparser.yacctab" not found!
+74719 INFO: Performing binary vs. data reclassification (2234 entries)
+75390 INFO: Looking for ctypes DLLs
+75511 INFO: Analyzing run-time hooks ...
+75514 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+75519 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+75524 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+75528 INFO: Including run-time hook 'pyi_rth_setuptools.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+75530 INFO: Including run-time hook 'pyi_rth_pyside6.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+75533 INFO: Processing pre-find-module-path hook 'hook-_pyi_rth_utils.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+75536 INFO: Processing standard module hook 'hook-_pyi_rth_utils.py' from 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PyInstaller\\hooks'
+75628 INFO: Creating base_library.zip...
+75668 INFO: Looking for dynamic libraries
+77233 INFO: Extra DLL search directories (AddDllDirectory): ['E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\shiboken6', 'E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\pyopencl.libs']
+77233 INFO: Extra DLL search directories (PATH): ['E:\\bag\\Pyproject\\Noitatool\\.build-env\\Lib\\site-packages\\PySide6']
+81664 INFO: Warnings written to E:\bag\Pyproject\Noitatool\build\Noitatool\warn-Noitatool.txt
+81735 INFO: Graph cross-reference written to E:\bag\Pyproject\Noitatool\build\Noitatool\xref-Noitatool.html
+81882 INFO: checking PYZ
+81915 INFO: Building because E:\bag\Pyproject\Noitatool\noitatool\app.py changed
+81915 INFO: Building PYZ (ZlibArchive) E:\bag\Pyproject\Noitatool\build\Noitatool\PYZ-00.pyz
+82585 INFO: Building PYZ (ZlibArchive) E:\bag\Pyproject\Noitatool\build\Noitatool\PYZ-00.pyz completed successfully.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "E:\bag\Pyproject\Noitatool\.build-env\Lib\site-packages\PyInstaller\__main__.py", line 321, in <module>
+    run()
+    ~~~^^
+  File "E:\bag\Pyproject\Noitatool\.build-env\Lib\site-packages\PyInstaller\__main__.py", line 215, in run
+    run_build(pyi_config, spec_file, **vars(args))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\bag\Pyproject\Noitatool\.build-env\Lib\site-packages\PyInstaller\__main__.py", line 70, in run_build
+    PyInstaller.building.build_main.main(pyi_config, spec_file, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\bag\Pyproject\Noitatool\.build-env\Lib\site-packages\PyInstaller\building\build_main.py", line 1275, in main
+    build(specfile, distpath, workpath, clean_build)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\bag\Pyproject\Noitatool\.build-env\Lib\site-packages\PyInstaller\building\build_main.py", line 1213, in build
+    exec(code, spec_namespace)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "Noitatool.spec", line 51, in <module>
+    exe=EXE(pyz,a.scripts,[],exclude_binaries=True,name='Noitatool',console=False,icon=str(root/'vendor/noita-tools-master/public/favicon.ico'),version=str(root/'scripts/noitatool-version.txt'))
+  File "E:\bag\Pyproject\Noitatool\.build-env\Lib\site-packages\PyInstaller\building\api.py", line 625, in __init__
+    self.versrsrc = versioninfo.load_version_info_from_text_file(self.versrsrc)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\bag\Pyproject\Noitatool\.build-env\Lib\site-packages\PyInstaller\utils\win32\versioninfo.py", line 567, in load_version_info_from_text_file
+    with open(filename, 'rb') as fp:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'E:\\bag\\Pyproject\\Noitatool\\scripts\\noitatool-version.txt'

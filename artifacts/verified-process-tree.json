@@ -1,0 +1,9 @@
+{
+  "mainProcessId": 13832,
+  "reportedOwnerId": 13832,
+  "childProcessId": 20388,
+  "childParentProcessId": 13832,
+  "childExecutable": "E:\\bag\\Pyproject\\Noitatool\\dist\\releases\\20261021-process-lifecycle\\Noitatool\\_internal\\node.exe",
+  "directChild": true,
+  "childExitedWithOwner": true
+}

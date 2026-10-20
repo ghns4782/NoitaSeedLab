@@ -1,0 +1,13 @@
+test_gpu_multiple_blocks_count_rejections_once (test_search_performance.SearchPerformanceTests.test_gpu_multiple_blocks_count_rejections_once) ... ok
+test_hybrid_sparse_list_disjoint_coverage_and_single_worker (test_search_performance.SearchPerformanceTests.test_hybrid_sparse_list_disjoint_coverage_and_single_worker) ... ok
+test_real_gpu_perk_then_layer_generation (test_search_performance.SearchPerformanceTests.test_real_gpu_perk_then_layer_generation) ... E:\bag\Pyproject\Noitatool\.build-env\Lib\site-packages\pyopencl\__init__.py:581: CompilerWarning: Non-empty compiler output encountered. Set the environment variable PYOPENCL_COMPILER_OUTPUT=1 to see more.
+  lambda: self._prg.build(options_bytes, devices),
+ok
+test_reports_transfer_only_new_matches (test_search_performance.SearchPerformanceTests.test_reports_transfer_only_new_matches) ... ok
+test_reserved_verifier_and_cpu_search_run_concurrently (test_search_performance.SearchPerformanceTests.test_reserved_verifier_and_cpu_search_run_concurrently) ... ok
+test_virtual_rows_keep_all_results_and_roles (test_search_performance.SearchPerformanceTests.test_virtual_rows_keep_all_results_and_roles) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 8.651s
+
+OK

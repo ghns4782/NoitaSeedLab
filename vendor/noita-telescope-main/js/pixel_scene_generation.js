@@ -1,0 +1,505 @@
+import { NollaPrng } from './nolla_prng.js';
+import { BLOCKED_COLORS, GENERAL_SCENES, PIXEL_SCENE_BIOME_MAP } from './pixel_scene_config.js';
+import { MATERIAL_COLOR_CONVERSION, MATERIAL_WANG_COLORS } from './potion_config.js';
+import { getBiomeAtWorldCoordinates } from './utils.js';
+import { biomeEdgeNoiseFlag } from './wobble_flags.js';
+import { loadPNG } from './png_sanitizer.js';
+import { prescanPixelScene } from './poi_scanner.js';
+import { BIOME_BACKGROUND_COLORS, TILE_OVERLAY_COLORS, makeBlackTransparent } from './image_processing.js';
+import { GENERATOR_CONFIG } from './generator_config.js';
+import { appSettings } from './settings.js';
+
+// This was originally constant but it sometimes needs to be cleared to regenerate the cache...
+export let PIXEL_SCENE_DATA = {};
+export let PIXEL_SCENE_SPAWN_DATA = {}; // Populated during the prescan of pixel scenes, keyed by biome and scene name, used for looking up spawn points during generation without needing to access the image data again
+const PIXEL_SCENE_CANVAS_CACHE = {};
+
+export function injectPixelSceneSpawnData(cachedData) {
+	PIXEL_SCENE_SPAWN_DATA = cachedData;
+}
+
+export function injectPixelSceneData(cachedData) {
+    PIXEL_SCENE_DATA = cachedData;
+}
+
+const SCENES_TO_NOT_RECOLOR = ["wand_altar", "wand_altar_vault", "potion_altar", "potion_altar_vault"]; // It would be a waste to recolor these for every biome
+const PIXEL_SCENE_AIR_TRANSPARENCY_EXCEPTIONS = {
+	"the_end_shop": 0xff,
+	"cavern": 0xff,
+	"friendroom": 0xff,
+	"eyespot": 0xff,
+	"altar_snowcastle_capsule": 0xff,
+	"altar_vault_capsule": 0xff,
+	"altar_snowcave_capsule": 0xff,
+	// These two look good when solid if there isn't custom art, but bad if there is. Not really sure what the best option is
+	//"altar_top": 0xff,
+	//"altar_top_ending": 0xff,
+	"tower_start": 0xff,
+	"solid_wall_hidden_cavern": 0xff,
+	"watercave_layout_1": 0xff,
+	"watercave_layout_2": 0xff,
+	"watercave_layout_3": 0xff,
+	"watercave_layout_4": 0xff,
+	"watercave_layout_5": 0xff,
+	// Otherwise assume transparent?
+}
+
+export async function reloadPixelSceneCache() {
+	PIXEL_SCENE_DATA = {};
+	await loadPixelSceneData();
+}
+
+export function getPixelSceneCanvas(pixelScene) {
+	const pixelSceneKey = pixelScene.key;
+	const variantKey = pixelScene.variantKey || '';
+	const key = `${pixelSceneKey}/${variantKey}`;
+	if (PIXEL_SCENE_CANVAS_CACHE[key]) return PIXEL_SCENE_CANVAS_CACHE[key];
+	const pixelSceneData = PIXEL_SCENE_DATA[pixelSceneKey].variants[variantKey];
+	if (!pixelSceneData) {
+		//console.warn(`Pixel scene data not found for key ${pixelSceneKey} with variant ${variantKey}.`);
+		return null;
+	}
+	const width = PIXEL_SCENE_DATA[pixelSceneKey].width;
+	const height = PIXEL_SCENE_DATA[pixelSceneKey].height;
+	const canvas = new OffscreenCanvas(width, height);
+	const ctx = canvas.getContext('2d');
+	const imageData = ctx.createImageData(width, height);
+	imageData.data.set(pixelSceneData);
+	ctx.putImageData(imageData, 0, 0);
+	PIXEL_SCENE_CANVAS_CACHE[key] = canvas;
+	return canvas;
+}
+
+function getBiomeAlias(biomeName) {
+	// Aliases to avoid needing to duplicate files for repeated biomes
+	if (biomeName === "coalmine_alt") return "coalmine";
+	if (biomeName === "excavationsite_cube_chamber") return "excavationsite";
+	if (biomeName === "snowcave_secret_chamber") return "snowcave";
+	if (biomeName === "sandcave" || biomeName === "snowcastle_cavern" || biomeName === "snowcastle_hourglass_chamber") return "snowcastle";
+	if (biomeName === "rainforest_open" || biomeName === "rainforest_dark") return "rainforest";
+	if (biomeName === "vault_frozen") return "vault";
+	if (biomeName === "the_end" || biomeName === "the_sky") return "crypt";
+	if (biomeName === "scale") return "overworld";
+	if (biomeName.includes("temple")) return "temple";
+	if (biomeName.includes("pyramid")) return "pyramid";
+	if (biomeName.includes("mountain")) return "mountain";
+	return biomeName;
+}
+
+function getPixelSceneVariant(pixelSceneKey, variantKey) {
+	if (variantKey === '') return PIXEL_SCENE_DATA[pixelSceneKey].imgElement;
+	if (PIXEL_SCENE_DATA[pixelSceneKey].variants[variantKey]) return PIXEL_SCENE_DATA[pixelSceneKey].variants[variantKey];
+	console.log(`No variant found for pixel scene key ${pixelSceneKey} with variant key ${variantKey}?`);
+	return null;
+}
+
+//const GENERAL_SCENES = ["wand_altar", "wand_altar_vault", "potion_altar", "potion_altar_vault"]; // These scenes are used in multiple biomes, so we can check for them first before doing the biome-specific lookup
+const GENERAL_SCENE_NAMES = GENERAL_SCENES["extras"].map(scene => scene.name);
+
+// Don't use the alias here because spawn points can have different indices per "duplicate" biome, so we need to keep them separate in the data
+function getPixelSceneKey(biomeName, sceneName) {
+	if (biomeName.includes("temple")) return "temple/" + sceneName;
+	if (biomeName.includes("pyramid")) return "pyramid/" + sceneName;
+	if (biomeName.includes("mountain")) return "mountain/" + sceneName;
+	if (!biomeName || GENERAL_SCENE_NAMES.includes(sceneName) || !GENERATOR_CONFIG[biomeName]) return "general/" + sceneName;
+	return biomeName + "/" + sceneName;
+}
+
+export async function loadPixelSceneData() {
+	// Load key value pairs for all pixel scenes
+	let loaded = 0;
+	for (const biome of Object.keys(PIXEL_SCENE_BIOME_MAP)) {
+		const biomeScenes = PIXEL_SCENE_BIOME_MAP[biome];
+		for (const sceneList of Object.values(biomeScenes)) {
+			for (const scene of sceneList) {
+				if (scene.name === "") continue; // Skip the "no scene" option
+				const key = getPixelSceneKey(biome, scene.name);
+				if (!PIXEL_SCENE_DATA[key]) {
+					const url = `../data/pixel_scenes/${getBiomeAlias(biome)}/${scene.name}.png`;
+					const imgData = await loadPNG(url);
+					makeBlackTransparent(imgData.data);
+					// Prescan the pixel scene for spawn points and store them in a global lookup for later use during generation, keyed by biome and scene name
+					const spawnPoints = prescanPixelScene(imgData, biome);
+					PIXEL_SCENE_SPAWN_DATA[key] = spawnPoints;
+					//console.log(`Loaded pixel scene ${key} with ${spawnPoints.length} spawn points.`);
+					PIXEL_SCENE_DATA[key] = {
+						key: key,
+						biome: biome,
+						name: scene.name,
+						imgElement: imgData.data, // Store the image data directly since we need to manipulate it for recoloring
+						width: imgData.width,
+						height: imgData.height,
+						//spawnPoints: spawnPoints,
+						isCosmetic: spawnPoints.length === 0, // If there are no spawn points, we can consider it purely cosmetic and can optionally skip some checks during generation
+						variants: {}, // Used for color material changes, keyed as `${color}=${material}`
+					};
+					loaded++;
+				}
+			}
+		}
+	}
+	console.log(`Loaded ${loaded} pixel scenes.`);
+}
+
+// This function scans the pixel scene image for blocked room colors, and returns an array of room objects with their coordinates and colors
+export function blockOutRooms(pixels, width, height) {
+	let rooms = [];
+	for (let y = 4; y < height; y++) {
+		for (let x = 0; x < width; x++) {
+			const idx = (y * width + x) * 3;
+			const color = (pixels[idx] << 16) | (pixels[idx+1] << 8) | pixels[idx+2];
+			if (color === 0x000000 || color === 0xffffff) continue;
+			if (!BLOCKED_COLORS.includes(color)) continue;
+
+			let startX = x+1;
+			let startY = y+1;
+			let endX = x+1;
+			let endY = y+1;
+			let foundEnd = false;
+			while (!foundEnd && endX < width) {
+				if (endX >= width) break;
+				const tempIdx = (startY * width + endX) * 3;
+				const tempColor = (pixels[tempIdx] << 16) | (pixels[tempIdx+1] << 8) | pixels[tempIdx+2];
+				if (tempColor === 0x000000 || tempColor === 0x323232) {
+					endX++;
+					continue;
+				}
+				endX--;
+				foundEnd = true;
+			}
+			if (endX >= width) endX = width - 1;
+			foundEnd = false;
+			while (!foundEnd && endY < height) {
+				if (endY >= height) break;
+				const tempIdx = (endY * width + startX) * 3;
+				const tempColor = (pixels[tempIdx] << 16) | (pixels[tempIdx+1] << 8) | pixels[tempIdx+2];
+				if (tempColor === 0x000000 || tempColor === 0x323232) {
+					endY++;
+					continue;
+				}
+				endY--;
+				foundEnd = true;
+			}
+			if (endY >= height) endY = height - 1;
+
+			if (endX > startX && endY > startY) {
+				//console.log(`Blocking out room from (${startX}, ${startY}) to (${endX}, ${endY})`);
+
+				// Block out the room with pixels to block pathfinding
+				for (let by = startY; by <= endY; by++) {
+					for (let bx = startX; bx <= endX; bx++) {
+						const bIdx = (by * width + bx) * 3;
+						// Magenta for debug
+						pixels[bIdx] = 0xff;
+						pixels[bIdx + 1] = 0x01;
+						pixels[bIdx + 2] = 0xff;
+					}
+				}
+			}
+
+			rooms.push({color, startX, startY, endX, endY});
+		}
+	}
+	return rooms;
+}
+
+const CHECK_PIXEL_SCENE_BIOME = true;
+
+// Trailer altar example for validating that the bounds check is working correctly:
+// Seed: 119164939, NG+1
+// Appears in PW 0, disappears in PW -1, second one appears in PW 9
+
+// TODO: Refactoring pixel scenes to not do the image manipulation here at all
+// Instead do it in the overlay worker when generating for display
+// Minimize the amount of information returned to keep the worker messages lightweight
+
+export function loadPixelScene(biomeData, biomeName, sceneName, ws, ng, x, y, skipCosmeticScenes = true, checkBounds = true, gameMode = 'normal') {
+	const pixelSceneKey = getPixelSceneKey(biomeName, sceneName);
+	if (!PIXEL_SCENE_DATA[pixelSceneKey]) {
+		console.warn(`Pixel scene data not found for key ${pixelSceneKey}. This should not happen because we preload all pixel scene images.`);
+		return null;
+	}
+	const pixelSceneData = PIXEL_SCENE_DATA[pixelSceneKey];
+	if (pixelSceneData.isCosmetic && skipCosmeticScenes) {
+		// If the scene is purely cosmetic and we're skipping cosmetic scenes, skip it
+		return null;
+	}
+	// checkBounds matches the skip_biome_checks parameter and only checks the top-left corner, while randomly placed pixel scenes check all corners
+	if (checkBounds && biomeName && CHECK_PIXEL_SCENE_BIOME) {
+		const topLeft = getBiomeAtWorldCoordinates(biomeData, x, y, ng > 0, gameMode);
+		// Check wobbled biome based on edge noise
+		if (!topLeft.biome && biomeEdgeNoiseFlag(topLeft.colorInt, 'noise_biome_edges') === null) {
+			// This does not appear to ever trigger?
+			console.log(`Rejected spawn for pixel scene ${sceneName} at (${x}, ${y}) with unknown biome color ${topLeft.colorInt.toString(16)} in original biome ${biomeName}. This likely means the biome map is missing colors from the data.wak unpack, such as NG+ palette swaps. Accepting spawn but returning null biome so it can be recolored without a biome-specific variant.`);
+			return null;
+		}
+		// Unsure about this, but it would make sense... Seems to help
+		if (topLeft.biome !== biomeName) {
+			//console.log(`Rejected spawn for pixel scene ${sceneName} at (${x}, ${y}) in biome ${biomeName} because top-left corner is in biome ${topLeft.biome}.`);
+			return null;
+		}
+	}
+	// Recolor the pixel scene for the biome if needed
+	if (!biomeName || biomeName === "general") {
+		// Better fallback
+		if (SCENES_TO_NOT_RECOLOR.includes(sceneName)) {
+			biomeName = "general";
+		} else {
+			biomeName = getBiomeAtWorldCoordinates(biomeData, x + pixelSceneData.width/2, y + pixelSceneData.height/2, ng > 0, gameMode, true)?.biome || "general";
+		}
+	}
+	// Exception to the exception because it's in two different biomes which need to be recolored differently
+	// There are a few other pixel scenes which could follow this pattern, but they're drawn in the custom art already
+	if (sceneName !== "the_end_shop" && GENERAL_SCENE_NAMES.includes(sceneName)) {
+		biomeName = "general";
+	}
+	// Alternative?
+	/*
+	if (SCENES_TO_NOT_RECOLOR.includes(sceneName)) {
+		biomeName = "general";
+	}
+	else if (!biomeName || biomeName === "general") {
+		biomeName = getBiomeAtWorldCoordinates(biomeData, x + pixelSceneData.width/2, y + pixelSceneData.height/2, ng > 0, gameMode)?.biome || "general";
+	}
+	*/
+	const variantKey = `biome=${biomeName}`;
+	/*
+	if (!PIXEL_SCENE_DATA[pixelSceneKey].variants[variantKey]) {
+		PIXEL_SCENE_DATA[pixelSceneKey].variants[variantKey] = recolorPixelSceneForBiome(sceneName, getPixelSceneVariant(pixelSceneKey, ''), PIXEL_SCENE_DATA[pixelSceneKey].width, PIXEL_SCENE_DATA[pixelSceneKey].height, biomeName, x, y);
+		//console.log(`Created biome variant of pixel scene ${pixelSceneKey} with key ${variantKey}`);
+	}
+	*/
+	//const pixelSceneImage = PIXEL_SCENE_DATA[pixelSceneKey].variants[variantKey];
+	//console.log(`Loaded pixel scene ${sceneName} for biome ${biomeName} at (${x}, ${y}) with keys ${pixelSceneKey} / ${variantKey}`);
+	return {
+		key: pixelSceneKey,
+		variantKey: variantKey,
+		name: sceneName,
+		//imgElement: pixelSceneImage,
+		width: pixelSceneData.width,
+		height: pixelSceneData.height,
+		x: x,
+		y: y,
+		//spawnPoints: pixelSceneData.spawnPoints,
+		material: null,
+		type: 'pixel_scene'
+	};
+}
+
+export function loadRandomPixelScene(biomeData, biomeName, scene_list, ws, ng, x, y, skipCosmeticScenes = true, gameMode = 'normal') {
+	if (!scene_list || scene_list.length === 0) return null;
+	const prng = new NollaPrng(0);
+	let total_prob = 0;
+	for (const scene of scene_list) {
+		total_prob += scene.prob;
+	}
+	let r = prng.ProceduralRandom(ws + ng, x, y) * total_prob;
+	for (const scene of scene_list) {
+		if (scene.prob <= 0) continue;
+		if (r <= scene.prob) {
+			if (scene.name === "") return null; // Rolled for no scene
+			const pixelSceneKey = getPixelSceneKey(biomeName, scene.name);
+			if (!PIXEL_SCENE_DATA[pixelSceneKey]) {
+				console.warn(`Pixel scene data not found for key ${pixelSceneKey}. This should not happen because we preload all pixel scene images.`);
+				return null;
+			}
+			const pixelSceneData = PIXEL_SCENE_DATA[pixelSceneKey];
+			if (pixelSceneData.isCosmetic && skipCosmeticScenes) {
+				// If the scene is purely cosmetic and we're skipping cosmetic scenes, skip it
+				return null;
+			}
+			let outputScene = {
+				key: pixelSceneKey,
+				name: scene.name, 
+				//imgElement: pixelSceneData.imgElement,
+				width: pixelSceneData.width,
+				height: pixelSceneData.height,
+				x: x, 
+				y: y, 
+				material: null,
+				//spawnPoints: pixelSceneData.spawnPoints,
+				type: 'pixel_scene'
+			};
+			// Check all four corners to make sure they are in the same biome
+			if (CHECK_PIXEL_SCENE_BIOME) {
+				const w = pixelSceneData.width;
+				const h = pixelSceneData.height;
+				const corners = [
+					[x, y],
+					[x + w, y],
+					[x, y + h],
+					[x + w, y + h],
+				];
+				for (const [cx, cy] of corners) {
+					const res = getBiomeAtWorldCoordinates(biomeData, cx, cy, ng > 0, gameMode, true);
+					// Reject if the corner's wobbled biome is different (including null)
+					if (res.biome !== biomeName) {
+						return null;
+					}
+				}
+			}
+			// Recolor random materials first so material lookups still work
+			let variantKey = '';
+			if (scene.color_material) {
+				// Sort keys to ensure consistent ordering for caching variants
+				const sortedColors = Object.keys(scene.color_material).sort((a, b) => parseInt(a, 16) - parseInt(b, 16));
+				for (const color of sortedColors) {
+					// Start with the recolored variant
+					//let pixelSceneImage = getPixelSceneVariant(pixelSceneKey, variantKey);
+					const materials = scene.color_material[color];
+					prng.SetRandomSeed(ws + ng, x + 11, y - 21); //?
+					let r = prng.ProceduralRandom(ws + ng, x + 11, y - 21); // Note ProceduralRandom returns a value in (0, 1] so this is actually fine
+					let mr = Math.ceil(r * materials.length) - 1;
+					
+					const targetMaterial = materials[mr];
+					outputScene.material = targetMaterial;
+					let materialColor = MATERIAL_WANG_COLORS[materials[mr]];
+					// See if the recolored pixel scene is already cached
+					//variantKey += (variantKey !== '' ? '&' : '') + `${color}=${targetMaterial}`;
+					// Use material color instead to avoid an extra lookup
+					variantKey += (variantKey !== '' ? '&' : '') + `${color}=${materialColor}`;
+					/*
+					if (!PIXEL_SCENE_DATA[pixelSceneKey].variants[variantKey]) {
+						PIXEL_SCENE_DATA[pixelSceneKey].variants[variantKey] = recolorPixelScene(
+							pixelSceneImage, 
+							parseInt(color, 16), 
+							parseInt(materialColor, 16)
+						);
+						//console.log(`Created variant of pixel scene ${pixelSceneKey} with key ${variantKey}`);
+					}
+					*/
+				}
+			}
+			// Recolor the pixel scene for the biome if needed
+			const finalVariantKey = variantKey + (variantKey !== '' ? '&' : '') + `biome=${biomeName}`;
+			/*
+			if (!PIXEL_SCENE_DATA[pixelSceneKey].variants[finalVariantKey]) {
+				PIXEL_SCENE_DATA[pixelSceneKey].variants[finalVariantKey] = recolorPixelSceneForBiome(scene.name, getPixelSceneVariant(pixelSceneKey, variantKey), biomeName);
+				//console.log(`Created biome variant of pixel scene ${pixelSceneKey} with key ${finalVariantKey}`);
+			}
+			*/
+			outputScene.variantKey = finalVariantKey;
+			//outputScene.imgElement = PIXEL_SCENE_DATA[pixelSceneKey].variants[finalVariantKey];
+
+			//console.log(`Loaded pixel scene ${scene.name} at (${x}, ${y}) in biome ${biomeName}.`);
+			return outputScene;
+		}
+		r -= scene.prob;
+	}
+	console.log(`Impossible zero probability outcome for pixel scene at (${x}, ${y}), total prob ${total_prob}, r ${r}: ${JSON.stringify(scene_list)}`);
+	return null;
+}
+
+export function recolorPixelSceneForBiome(sceneName, sourceData, targetBiome) {
+	//const recolorMaterials = document.getElementById('recolor-materials').checked;
+	const recolorMaterials = appSettings.recolorMaterials;
+
+	const outData = new Uint8Array(sourceData.length);
+	outData.set(sourceData);
+
+	// Some scene name exceptions because this just isn't working
+
+
+	let targetColor = TILE_OVERLAY_COLORS[targetBiome] || 0xff00ff;
+	let bgColor = BIOME_BACKGROUND_COLORS[targetBiome] || 0x000000;
+	let targetR = (targetColor >> 16) & 0xFF;
+	let targetG = (targetColor >> 8) & 0xFF;
+	let targetB = targetColor & 0xFF;
+	let bgColorR = (bgColor >> 16) & 0xFF;
+	let bgColorG = (bgColor >> 8) & 0xFF;
+	let bgColorB = bgColor & 0xFF;
+	/*
+	const biomeMapWidth = getWorldSize(app.ngPlusCount > 0);
+	if (targetR === 255 && targetG === 0 && targetB === 255) {
+		// As a fallback, use the color of the biome map?
+		// TODO: Currently using app references here when I probably shouldn't
+		// Using center of the pixel scene, but it shouldn't really matter
+		const chunkX = (Math.floor((biomeMapWidth * 256 + x + width/2) / 512) % getWorldSize(app.ngPlusCount > 0) + getWorldSize(app.ngPlusCount > 0)) % getWorldSize(app.ngPlusCount > 0);
+		let chunkY = Math.floor((14*512 + y + height/2) / 512);
+		if (chunkY < 0) chunkY = 0;
+		if (chunkY > 47) chunkY = 47;
+		const bgColorIdx = (chunkY * biomeMapWidth + chunkX)*3;
+		const bgColor = (app.recolorOffscreenBuffer[bgColorIdx] << 16) | (app.recolorOffscreenBuffer[bgColorIdx + 1] << 8) | app.recolorOffscreenBuffer[bgColorIdx + 2];
+		if (y > 22000) {
+			console.log(bgColor, BIOME_BACKGROUND_COLORS["the_end"] & 0xffffff)
+		}
+		// TODO: Some attempt to make the background color not exactly the same as the terrain color... Need to just get a better background and foreground.
+		targetR = Math.floor(app.recolorOffscreenBuffer[bgColorIdx] * 0.75);
+		targetG = Math.floor(app.recolorOffscreenBuffer[bgColorIdx + 1] * 0.75);
+		targetB = Math.floor(app.recolorOffscreenBuffer[bgColorIdx + 2] * 0.75);
+		bgColorR = 0;
+		bgColorG = 0;
+		bgColorB = 0;
+	}
+	*/
+
+	for (let i = 0; i < outData.length; i += 4) {
+		const r = outData[i];
+		const g = outData[i + 1];
+		const b = outData[i + 2];
+
+		// Handle Grays (Material Recolor)
+		if (r === g && g === b && r > 0) {
+			outData[i] = targetR;
+			outData[i + 1] = targetG;
+			outData[i + 2] = targetB;
+			//outData[i + 3] = targetA;
+		} 
+		// Replace Air with Background
+		else if (r === 0x00 && g === 0x00 && b === 0x42) {
+			outData[i] = bgColorR;
+			outData[i + 1] = bgColorG;
+			outData[i + 2] = bgColorB;
+			// I think I need to set this differently depending on what the scene is, in the case of some of the static pixel scenes.
+			// Hiisi base seems to be an exception in general, not sure how I broke it
+			if (targetBiome === "snowcastle") {
+				outData[i + 3] = 0xff;
+			}
+			else if (PIXEL_SCENE_AIR_TRANSPARENCY_EXCEPTIONS[sceneName]) {
+				outData[i + 3] = PIXEL_SCENE_AIR_TRANSPARENCY_EXCEPTIONS[sceneName];
+			}
+			else {
+				outData[i + 3] = 0x00;
+			}
+		} 
+		// Recolor Wang Colors
+		else if (recolorMaterials && (r > 0 || g > 0 || b > 0)) {
+			const rgb = (r << 16) | (g << 8) | b;
+			const matColor = MATERIAL_COLOR_CONVERSION[rgb];
+			if (matColor) {
+				outData[i] = (matColor >> 16) & 0xFF;
+				outData[i + 1] = (matColor >> 8) & 0xFF;
+				outData[i + 2] = matColor & 0xFF;
+			}
+		}
+	}
+
+	return outData;
+}
+
+// Width and height are not actually needed here
+export function recolorPixelScene(sourceData, sourceColor, targetColor) {
+    const outData = new Uint8Array(sourceData.length);
+	outData.set(sourceData);
+
+	const sourceR = (sourceColor >> 16) & 0xFF;
+	const sourceG = (sourceColor >> 8) & 0xFF;
+	const sourceB = sourceColor & 0xFF;
+
+	const targetR = (targetColor >> 16) & 0xFF;
+	const targetG = (targetColor >> 8) & 0xFF;
+	const targetB = targetColor & 0xFF;
+
+    for (let i = 0; i < outData.length; i += 4) {
+        const r = outData[i];
+		const g = outData[i + 1];
+		const b = outData[i + 2];
+		if (r === sourceR && g === sourceG && b === sourceB) {
+			outData[i] = targetR;
+			outData[i + 1] = targetG;
+			outData[i + 2] = targetB;
+		}
+    }
+
+    return outData;
+}

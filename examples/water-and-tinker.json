@@ -1,0 +1,7 @@
+{
+  "type": "and",
+  "rules": [
+    {"type": "startingFlask", "val": "water"},
+    {"type": "perk", "val": {"all": [["EDIT_WANDS_EVERYWHERE"]], "some": [], "deck": []}}
+  ]
+}

@@ -1,0 +1,11 @@
+test_cached_and_fresh_region_spell_results_agree (test_range_session.RangeSessionTests.test_cached_and_fresh_region_spell_results_agree) ... ok
+test_cached_map_area_and_other_category (test_range_session.RangeSessionTests.test_cached_map_area_and_other_category) ... ok
+test_invalid_new_ranges_are_rejected (test_range_session.RangeSessionTests.test_invalid_new_ranges_are_rejected) ... ok
+test_map_picker_toggles_checks_and_keeps_multiple_custom_boxes (test_range_session.RangeSessionTests.test_map_picker_toggles_checks_and_keeps_multiple_custom_boxes) ... ok
+test_session_reuses_engine_copies_results_and_invalidates_context (test_range_session.RangeSessionTests.test_session_reuses_engine_copies_results_and_invalidates_context) ... ok
+test_union_of_main_side_and_multiple_rectangles (test_range_session.RangeSessionTests.test_union_of_main_side_and_multiple_rectangles) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 11.986s
+
+OK

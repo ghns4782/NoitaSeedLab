@@ -1,0 +1,28 @@
+{
+  "origin": [
+    -18056.793893129772,
+    -32098.68702290076
+  ],
+  "scale": 17.099236641221374,
+  "nativeScale": 34.19847328244275,
+  "source": "User-supplied stitched offline overview",
+  "fixedLayout": true,
+  "enlargement": 2,
+  "registration": {
+    "mainOffsetY": 663,
+    "artRenderedWidth": 1048,
+    "artOffset": [
+      4,
+      66
+    ],
+    "artWorldOrigin": [
+      -17920,
+      -7168
+    ],
+    "artWorldWidth": 35840
+  },
+  "width": 2122,
+  "height": 4350,
+  "levels": 14,
+  "bytes": 5311272
+}

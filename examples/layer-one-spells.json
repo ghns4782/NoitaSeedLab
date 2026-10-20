@@ -1,0 +1,9 @@
+{
+  "type": "layerSpells",
+  "val": {
+    "layer": 0,
+    "scope": "main",
+    "mode": "all",
+    "ids": ["BLACK_HOLE", "CHAINSAW"]
+  }
+}

@@ -1,0 +1,18 @@
+test_cpu_search_job (test_ui.UITests.test_cpu_search_job) ... ok
+test_daily_seed_opens_automatically_and_keeps_manual_input (test_ui.UITests.test_daily_seed_opens_automatically_and_keeps_manual_input) ... ok
+test_default_search_range_is_full (test_ui.UITests.test_default_search_range_is_full) ... ok
+test_gpu_search_job (test_ui.UITests.test_gpu_search_job) ... E:\bag\Pyproject\Noitatool\.build-env\Lib\site-packages\pyopencl\__init__.py:581: CompilerWarning: Non-empty compiler output encountered. Set the environment variable PYOPENCL_COMPILER_OUTPUT=1 to see more.
+  lambda: self._prg.build(options_bytes, devices),
+ok
+test_info_job_and_icons (test_ui.UITests.test_info_job_and_icons) ... ok
+test_layer_inspection_job (test_ui.UITests.test_layer_inspection_job) ... ok
+test_list_layer_search_job_with_gpu_preference (test_ui.UITests.test_list_layer_search_job_with_gpu_preference) ... ok
+test_multiple_layer_editor_and_old_condition (test_ui.UITests.test_multiple_layer_editor_and_old_condition) ... ok
+test_overgrown_inventory_follows_current_world_and_wand_details (test_ui.UITests.test_overgrown_inventory_follows_current_world_and_wand_details) ... ok
+test_rule_round_trip_and_shop_editor (test_ui.UITests.test_rule_round_trip_and_shop_editor) ... ok
+test_stop_job (test_ui.UITests.test_stop_job) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 20.447s
+
+OK

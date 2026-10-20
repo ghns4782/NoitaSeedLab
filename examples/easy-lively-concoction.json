@@ -1,0 +1,7 @@
+{
+  "type": "alchemy",
+  "val": {
+    "LC": ["water", "water_swamp", "water_ice", "blood", "oil", "mud", "swamp", "snow", "sand", "soil", "grass", "coal"],
+    "AP": []
+  }
+}
