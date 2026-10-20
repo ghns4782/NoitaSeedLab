@@ -1,8 +1,14 @@
-# NoitaSeedLab
+<h1 align="center">Noita种子工具</h1>
+
+<p align="center">
+  <a href="./README_EN.md">English</a>
+  &nbsp; | &nbsp;
+  <a href="./README.md">简体中文</a>
+</p>
 
 >还在为了找种子而四处晕头转向吗！还在因为地图上还有哪些东西没找到而气馁吗！快来使用本软件吧
 
-||终究是因为找不到种子而急急急了||
+~~终究是因为找不到种子而急急急了~~
 
 ## 能做什么
 
@@ -30,6 +36,9 @@
 
 ![!\[alt text\](image.png)](docx/findseedloder.png)
 
+## 语言支持
+本软件默认支持英语与中文，其余的需要自行制作翻译，原生是支持CSV/json等制作翻译，所以后续项目可以提交翻译等为此软件增加更多语言
+
 ## 下载与使用
 
 Windows 打包版发布后，可在本仓库的 **Releases** 页面下载。
@@ -46,3 +55,6 @@ Linux、mac由于本人没有那些系统的电脑不知道兼容情况所以推
 ## 致谢
 
 再次十分感谢 [Noitool / noita-tools](https://github.com/TwoAbove/noita-tools) 和 [Noita Telescope](https://github.com/Lymm37/noita-telescope) 提供的算法与游戏资源。第三方来源与许可见 [THIRD_PARTY.md](THIRD_PARTY.md)。
+
+
+***本项目与《noita》游戏无关***
