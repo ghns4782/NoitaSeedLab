@@ -1,4 +1,4 @@
-<h1 align="center">Noita种子工具</h1>
+<h1 align="center">NoitaSeedLab</h1>
 
 <p align="center">
   <a href="./README_EN.md">English</a>
